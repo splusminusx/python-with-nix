@@ -34,5 +34,10 @@ $ nix run .
 
 Run checks
 ```bash
-nix flake check
+$ nix flake check
+```
+
+Run pre-commit checks on all files
+```bash
+$ nix develop --ignore-environment -f shell.nix -c pre-commit run --all-files
 ```

@@ -30,7 +30,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, gitignore, pre-commit-hooks, poetry2nix, ... }@inputs: {
+  outputs = { self, nixpkgs, flake-utils, gitignore, poetry2nix, ... }@inputs: {
     overlays.default = nixpkgs.lib.composeManyExtensions [
       gitignore.overlay
       poetry2nix.overlay
@@ -63,6 +63,8 @@
           statix
           imageappEnv39
         ];
+
+        inherit (checks.pre-commit-check) shellHook;
       };
 
       apps.default = {
@@ -71,20 +73,20 @@
       };
 
       checks = {
-        lint = pkgs.stdenv.mkDerivation {
-          dontPatch = true;
-          dontConfigure = true;
-          dontBuild = true;
-          dontInstall = true;
-          doCheck = true;
-          name = "lint";
-          src = ./.;
-          checkInputs = [ pkgs.imageappEnv39 ];
-          checkPhase = ''
-            mkdir -p $out
-            flake8 . --count --show-source --statistics
-          '';
-        };
+        # lint = pkgs.stdenv.mkDerivation {
+        #   dontPatch = true;
+        #   dontConfigure = true;
+        #   dontBuild = true;
+        #   dontInstall = true;
+        #   doCheck = true;
+        #   name = "lint";
+        #   src = ./.;
+        #   checkInputs = [ pkgs.imageappEnv39 ];
+        #   checkPhase = ''
+        #     mkdir -p $out
+        #     flake8 . --count --show-source --statistics
+        #   '';
+        # };
 
         tests = pkgs.stdenv.mkDerivation {
           dontPatch = true;
@@ -101,7 +103,7 @@
           '';
         };
 
-        pre-commit-check = (import ./nix/checks.nix inputs system).pre-commit-check;
+        inherit (import ./nix/checks.nix inputs system) pre-commit-check;
       };
     });
 }
