@@ -73,21 +73,6 @@
       };
 
       checks = {
-        # lint = pkgs.stdenv.mkDerivation {
-        #   dontPatch = true;
-        #   dontConfigure = true;
-        #   dontBuild = true;
-        #   dontInstall = true;
-        #   doCheck = true;
-        #   name = "lint";
-        #   src = ./.;
-        #   checkInputs = [ pkgs.imageappEnv39 ];
-        #   checkPhase = ''
-        #     mkdir -p $out
-        #     flake8 . --count --show-source --statistics
-        #   '';
-        # };
-
         tests = pkgs.stdenv.mkDerivation {
           dontPatch = true;
           dontConfigure = true;

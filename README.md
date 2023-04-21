@@ -1,20 +1,11 @@
+## Python project scaffold with Poetry + Nix
+
 Dependencies:
 - https://github.com/nix-community/poetry2nix
 - https://github.com/numtide/flake-utils
 - https://github.com/edolstra/flake-compat
-
-Create a new flake from the [template](https://github.com/NixOS/templates)
-```bash
-$ nix flake new python-flake -t templates#python
-```
-
-Copy application code
-```bash
-$ cd python-flake
-$ cp ../imageapp/pyproject.toml ./
-$ cp ../imageapp/poetry.lock ./
-$ cp ../imageapp/imageapp ./
-```
+- https://github.com/cachix/pre-commit-hooks.nix
+- https://github.com/hercules-ci/gitignore.nix
 
 Build an app and run it
 ```bash
@@ -41,3 +32,9 @@ Run pre-commit checks on all files
 ```bash
 $ nix develop --ignore-environment -f shell.nix -c pre-commit run --all-files
 ```
+
+References:
+- https://github.com/ibis-project/ibis-substrait
+- [Writing your own Nix Flake checks](https://msfjarvis.dev/posts/writing-your-own-nix-flake-checks/)
+- [How to Nixify a Python Project](https://altf4.wiki/t/how-to-nixify-a-python-project/126)
+- [Tweag.io introduction post](https://www.tweag.io/blog/2020-08-12-poetry2nix/)
