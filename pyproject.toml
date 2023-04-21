@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "imageapp"
+version = "0.1.0"
+description = ""
+authors = ["Roman Malygin <roman.malygin@nordigy.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.28.2"
+Pillow = "^9.2.0"
+Flask = "^2.2.3"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+black = "^23.0.0"
+ruff = "^0.0.252"
+
+[tool.poetry.group.types.dependencies]
+mypy = "^1.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+main = 'imageapp:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
